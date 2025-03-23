@@ -92,12 +92,12 @@ a {
 
 .nav-links {
     list-style: none;
-    margin-bottom: auto;
+    /* margin-bottom: auto; */
 }
-/* 
+
 .nav-links li {
     margin-bottom: 20px;
-} */
+}
 
 .nav-item {
     color: var(--nav-item-color);
