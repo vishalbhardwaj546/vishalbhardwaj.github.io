@@ -133,6 +133,7 @@ a {
 .social-links {
     display: flex;
     gap: 20px;
+    padding-bottom: 30px;
 }
 
 .social-links a {
