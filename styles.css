@@ -133,7 +133,6 @@ a {
 .social-links {
     display: flex;
     gap: 20px;
-    margin-top: 40px;
 }
 
 .social-links a {
@@ -411,13 +410,11 @@ a {
     }
     
     .social-links {
-        margin-top: 20px;
-        margin-bottom: 80px;
+        margin-bottom: 20px;
     }
 
     .action-buttons {
         flex-direction: row;
-        margin-bottom: 80px;
     }
 
     .action-button {
