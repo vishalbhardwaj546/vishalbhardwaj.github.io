@@ -1,115 +1,115 @@
 :root {
-    --bg-color: #0a192f;
-    --text-color: #8892b0;
-    --heading-color: #ccd6f6;
-    --bright-white: #FFFFFF; /* Pure white for better contrast */
-    --highlight-color: #64ffda;
-    --nav-item-color: #8892b0;
-    --nav-active-color: var(--bright-white);
-    --card-bg-color: rgba(2, 12, 27, 0.7);
-    --border-color: #1d2d50;
-    --tag-bg-color: rgba(45, 57, 82, 0.5);
-    --section-padding: 100px 0;
-    --sidebar-width: 450px; /* Increased sidebar width */
-  }
-  
-  /* Adjust the sidebar layout */
-  .sidebar {
-    width: var(--sidebar-width);
-    padding: 60px 70px; /* Increased padding all around */
-    position: fixed;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    border-right: 1px solid var(--border-color);
-    justify-content: space-between; /* Better vertical spacing */
-  }
-  
-  /* Make the profile intro section more prominent */
-  .profile-intro {
-    margin-bottom: 40px;
-  }
-  
-  .profile-intro h1 {
-    font-size: 3.2rem; /* Slightly larger font */
-    color: var(--bright-white); /* Make name bright white */
-    margin-bottom: 10px;
-    font-weight: 600;
-    letter-spacing: -0.5px; /* Tighter letter spacing for headings */
-  }
-  
-  /* Adjust nav item styling for more pronounced active state */
-  .nav-item {
-    color: var(--nav-item-color);
-    font-size: 0.9rem;
-    letter-spacing: 1.5px;
-    display: flex;
-    align-items: center;
-    position: relative;
-    transition: color 0.3s;
-    font-weight: 500;
-    padding: 5px 0;
-  }
-  
-  .nav-item::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: -25px; /* Move the line further left */
-    transform: translateY(-50%);
-    width: 40px;
-    height: 1.5px; /* Slightly thicker line */
-    background-color: var(--bright-white); /* Use bright white for active indicator */
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  
-  .nav-item:hover, .nav-item.active {
-    color: var(--bright-white); /* Pure white for active and hover */
-  }
-  
-  .nav-item.active::before {
-    opacity: 1;
-    background-color: var(--bright-white); /* Ensure active line is bright white */
-  }
-  
-  /* Fix social links spacing */
-  .social-links {
-    display: flex;
-    gap: 25px; /* More space between icons */
-    margin-bottom: 40px; /* Ensure not cut off */
-    padding-top: 60px; /* Add padding to separate from nav */
-  }
-  
-  .social-links a {
-    color: var(--nav-item-color);
-    font-size: 1.35rem; /* Slightly larger icons */
-    transition: color 0.3s;
-  }
-  
-  .social-links a:hover {
-    color: var(--bright-white);
-  }
-  
-  /* Content alignment */
-  .content {
-    margin-left: var(--sidebar-width);
-    padding: 60px 140px; /* Increased right padding */
-    width: calc(100% - var(--sidebar-width));
-    overflow-y: auto;
-    height: 100vh;
-  }
-  
-  /* Improve section spacing */
-  .section {
-    max-width: 800px; /* Wider content area */
-    padding: var(--section-padding);
-    min-height: 100vh;
-  }
-  
-  /* Ensure proper spacing in about content */
-  .about-content p {
-    margin-bottom: 35px; /* More space between paragraphs */
-    font-size: 1.15rem;
-    line-height: 1.8;
-  }
+  --bg-color: #0a192f;
+  --text-color: #8892b0;
+  --heading-color: #ccd6f6;
+  --bright-white: #FFFFFF; /* Make this pure white for better contrast */
+  --highlight-color: #64ffda;
+  --nav-item-color: #8892b0;
+  --nav-active-color: var(--bright-white);
+  --card-bg-color: rgba(2, 12, 27, 0.7);
+  --border-color: #1d2d50;
+  --tag-bg-color: rgba(45, 57, 82, 0.5);
+  --section-padding: 100px 0;
+  --sidebar-width: 420px; /* Increase further to match the image */
+}
+
+/* Adjust the sidebar layout */
+.sidebar {
+  width: var(--sidebar-width);
+  padding: 60px 50px; /* Increase padding all around */
+  position: fixed;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border-color);
+  justify-content: space-between; /* Better vertical spacing */
+}
+
+/* Make the profile intro section more prominent */
+.profile-intro {
+  margin-bottom: 40px;
+}
+
+.profile-intro h1 {
+  font-size: 3.2rem; /* Slightly larger font */
+  color: var(--bright-white);
+  margin-bottom: 10px;
+  font-weight: 600;
+  letter-spacing: -0.5px; /* Tighter letter spacing for headings */
+}
+
+/* Adjust nav item styling for more pronounced active state */
+.nav-item {
+  color: var(--nav-item-color);
+  font-size: 0.9rem;
+  letter-spacing: 1.5px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  transition: color 0.3s;
+  font-weight: 500;
+  padding: 5px 0;
+}
+
+.nav-item::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -25px; /* Move the line further left */
+  transform: translateY(-50%);
+  width: 40px;
+  height: 1.5px; /* Slightly thicker line */
+  background-color: var(--bright-white); /* Use bright white for active indicator */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.nav-item:hover, .nav-item.active {
+  color: var(--bright-white); /* Pure white for active and hover */
+}
+
+.nav-item.active::before {
+  opacity: 1;
+  background-color: var(--bright-white); /* Ensure active line is bright white */
+}
+
+/* Fix social links spacing */
+.social-links {
+  display: flex;
+  gap: 25px; /* More space between icons */
+  margin-bottom: 80px; /* Ensure not cut off */
+  padding-top: 60px; /* Add padding to separate from nav */
+}
+
+.social-links a {
+  color: var(--nav-item-color);
+  font-size: 1.35rem; /* Slightly larger icons */
+  transition: color 0.3s;
+}
+
+.social-links a:hover {
+  color: var(--bright-white);
+}
+
+/* Content alignment */
+.content {
+  margin-left: var(--sidebar-width);
+  padding: 60px 120px; /* Increased right padding */
+  width: calc(100% - var(--sidebar-width));
+  overflow-y: auto;
+  height: 100vh;
+}
+
+/* Improve section spacing */
+.section {
+  max-width: 800px; /* Wider content area */
+  padding: var(--section-padding);
+  min-height: 100vh;
+}
+
+/* Ensure proper spacing in about content */
+.about-content p {
+  margin-bottom: 35px; /* More space between paragraphs */
+  font-size: 1.15rem;
+  line-height: 1.8;
+}
