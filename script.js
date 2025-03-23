@@ -1,40 +1,59 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Navigation functionality
+    // Get all navigation links and sections
     const navLinks = document.querySelectorAll('.nav-item');
     const sections = document.querySelectorAll('.section');
+    const contentArea = document.querySelector('.content');
     
+    // Set About as active by default
+    document.querySelector('a[href="#about"]').classList.add('active');
+    
+    // Function to update active navigation item based on scroll position
+    function updateActiveNavOnScroll() {
+        let currentSection = '';
+        
+        // Determine which section is currently in view
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            
+            // If we've scrolled to or past this section, but not past the next one
+            if (contentArea.scrollTop >= sectionTop - 100 && 
+                contentArea.scrollTop < sectionTop + sectionHeight - 100) {
+                currentSection = section.getAttribute('id');
+            }
+        });
+        
+        // Update the active class on navigation items
+        if (currentSection) {
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    }
+    
+    // Add click event listeners to navigation links
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             
-            // Remove active class from all links
-            navLinks.forEach(item => item.classList.remove('active'));
-            
-            // Add active class to clicked link
-            this.classList.add('active');
-            
-            // Hide all sections
-            sections.forEach(section => section.classList.remove('active'));
-            
-            // Show the target section
+            // Get the target section ID
             const targetId = this.getAttribute('href').substring(1);
-            document.getElementById(targetId).classList.add('active');
+            const targetSection = document.getElementById(targetId);
             
-            // Scroll to top of content area on mobile
-            if (window.innerWidth <= 768) {
-                document.querySelector('.content').scrollTop = 0;
-            }
+            // Scroll to the target section
+            contentArea.scrollTo({
+                top: targetSection.offsetTop,
+                behavior: 'smooth'
+            });
         });
     });
     
-    // Initialize with the active section from navigation
-    const activeNavItem = document.querySelector('.nav-item.active');
-    if (activeNavItem) {
-        const targetId = activeNavItem.getAttribute('href').substring(1);
-        document.getElementById(targetId).classList.add('active');
-    } else {
-        // Default to experience section if no active nav item
-        document.getElementById('experience').classList.add('active');
-        document.querySelector('a[href="#experience"]').classList.add('active');
-    }
+    // Listen for scroll events on the content area
+    contentArea.addEventListener('scroll', updateActiveNavOnScroll);
+    
+    // Initial check for active section on page load
+    updateActiveNavOnScroll();
 });

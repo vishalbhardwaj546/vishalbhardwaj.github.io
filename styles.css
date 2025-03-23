@@ -8,12 +8,17 @@
     --card-bg-color: rgba(2, 12, 27, 0.7);
     --border-color: #1d2d50;
     --tag-bg-color: rgba(45, 57, 82, 0.5);
+    --section-padding: 100px 0;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -146,15 +151,22 @@ a {
     margin-left: 350px;
     padding: 60px 100px;
     width: calc(100% - 350px);
+    /* Added overflow-y for scrolling */
+    overflow-y: auto;
+    height: 100vh;
 }
 
+/* Remove the display: none from sections */
 .section {
-    display: none;
     max-width: 700px;
+    /* Add padding to create space between sections */
+    padding: var(--section-padding);
+    min-height: 100vh;
 }
 
-.section.active {
-    display: block;
+/* First section should have less top padding */
+.section:first-child {
+    padding-top: 0;
 }
 
 /* About Section */
@@ -369,12 +381,23 @@ a {
         border-right: none;
         border-bottom: 1px solid var(--border-color);
         padding: 30px;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background-color: var(--bg-color);
     }
     
     .content {
         margin-left: 0;
         width: 100%;
         padding: 30px;
+        height: auto;
+        overflow-y: visible;
+    }
+
+    .section {
+        min-height: auto;
+        padding: 50px 0;
     }
     
     .nav-links {
