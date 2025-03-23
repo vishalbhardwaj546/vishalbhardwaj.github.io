@@ -19,10 +19,22 @@ document.addEventListener('DOMContentLoaded', function() {
             // Show the target section
             const targetId = this.getAttribute('href').substring(1);
             document.getElementById(targetId).classList.add('active');
+            
+            // Scroll to top of content area on mobile
+            if (window.innerWidth <= 768) {
+                document.querySelector('.content').scrollTop = 0;
+            }
         });
     });
     
-    // Initially show the experience section (as seen in screenshots)
-    document.getElementById('experience').classList.add('active');
-    document.querySelector('a[href="#experience"]').classList.add('active');
+    // Initialize with the active section from navigation
+    const activeNavItem = document.querySelector('.nav-item.active');
+    if (activeNavItem) {
+        const targetId = activeNavItem.getAttribute('href').substring(1);
+        document.getElementById(targetId).classList.add('active');
+    } else {
+        // Default to experience section if no active nav item
+        document.getElementById('experience').classList.add('active');
+        document.querySelector('a[href="#experience"]').classList.add('active');
+    }
 });
