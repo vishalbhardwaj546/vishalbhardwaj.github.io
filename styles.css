@@ -1,115 +1,431 @@
 :root {
-  --bg-color: #0a192f;
-  --text-color: #8892b0;
-  --heading-color: #ccd6f6;
-  --bright-white: #FFFFFF; /* Make this pure white for better contrast */
-  --highlight-color: #64ffda;
-  --nav-item-color: #8892b0;
-  --nav-active-color: var(--bright-white);
-  --card-bg-color: rgba(2, 12, 27, 0.7);
-  --border-color: #1d2d50;
-  --tag-bg-color: rgba(45, 57, 82, 0.5);
-  --section-padding: 100px 0;
-  --sidebar-width: 420px; /* Increase further to match the image */
+    --bg-color: #0a192f;
+    --text-color: #8892b0;
+    --heading-color: #ccd6f6;
+    --bright-white: #FFFFFF; /* New brighter white color for active items */
+    --highlight-color: #64ffda;
+    --nav-item-color: #8892b0;
+    --nav-active-color: var(--bright-white); /* Using the brighter white for active nav */
+    --card-bg-color: rgba(2, 12, 27, 0.7);
+    --border-color: #1d2d50;
+    --tag-bg-color: rgba(45, 57, 82, 0.5);
+    --section-padding: 100px 0;
+    --sidebar-width: 400px; /* Increased from 350px */
 }
 
-/* Adjust the sidebar layout */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.7;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar styles */
 .sidebar {
-  width: var(--sidebar-width);
-  padding: 60px 50px; /* Increase padding all around */
-  position: fixed;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  border-right: 1px solid var(--border-color);
-  justify-content: space-between; /* Better vertical spacing */
-}
-
-/* Make the profile intro section more prominent */
-.profile-intro {
-  margin-bottom: 40px;
+    width: var(--sidebar-width);
+    padding: 60px 40px;
+    position: fixed;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border-color);
+    /* Add more spacing to the right with a larger right padding */
+    padding-right: 60px;
 }
 
 .profile-intro h1 {
-  font-size: 3.2rem; /* Slightly larger font */
-  color: var(--bright-white);
-  margin-bottom: 10px;
-  font-weight: 600;
-  letter-spacing: -0.5px; /* Tighter letter spacing for headings */
+    font-size: 3rem;
+    color: var(--bright-white); /* Changed to brighter white */
+    margin-bottom: 10px;
+    font-weight: 600;
 }
 
-/* Adjust nav item styling for more pronounced active state */
+.profile-intro h2 {
+    font-size: 1.25rem;
+    color: var(--heading-color);
+    margin-bottom: 20px;
+    font-weight: normal;
+}
+
+.profile-intro p {
+    margin-bottom: 30px;
+    max-width: 250px;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.action-button {
+    background-color: transparent;
+    border: 1px solid var(--highlight-color);
+    color: var(--highlight-color);
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 0.8rem;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.action-button:hover {
+    background-color: rgba(100, 255, 218, 0.1);
+}
+
+.nav-links {
+    list-style: none;
+    margin-bottom: auto;
+}
+
+.nav-links li {
+    margin-bottom: 20px;
+}
+
 .nav-item {
-  color: var(--nav-item-color);
-  font-size: 0.9rem;
-  letter-spacing: 1.5px;
-  display: flex;
-  align-items: center;
-  position: relative;
-  transition: color 0.3s;
-  font-weight: 500;
-  padding: 5px 0;
+    color: var(--nav-item-color);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    transition: color 0.3s;
 }
 
 .nav-item::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: -25px; /* Move the line further left */
-  transform: translateY(-50%);
-  width: 40px;
-  height: 1.5px; /* Slightly thicker line */
-  background-color: var(--bright-white); /* Use bright white for active indicator */
-  opacity: 0;
-  transition: opacity 0.3s;
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -20px;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 1px;
+    background-color: var(--nav-item-color);
+    opacity: 0;
+    transition: opacity 0.3s;
 }
 
 .nav-item:hover, .nav-item.active {
-  color: var(--bright-white); /* Pure white for active and hover */
+    color: var(--nav-active-color);
 }
 
-.nav-item.active::before {
-  opacity: 1;
-  background-color: var(--bright-white); /* Ensure active line is bright white */
+.nav-item.active::before, .nav-item:hover::before {
+    opacity: 1;
 }
 
-/* Fix social links spacing */
 .social-links {
-  display: flex;
-  gap: 25px; /* More space between icons */
-  margin-bottom: 80px; /* Ensure not cut off */
-  padding-top: 60px; /* Add padding to separate from nav */
+    display: flex;
+    gap: 20px;
+    margin-top: 60px; /* Increased from 40px */
+    margin-bottom: 30px; /* Added bottom margin to prevent cutoff */
 }
 
 .social-links a {
-  color: var(--nav-item-color);
-  font-size: 1.35rem; /* Slightly larger icons */
-  transition: color 0.3s;
+    color: var(--nav-item-color);
+    font-size: 1.25rem;
+    transition: color 0.3s;
 }
 
 .social-links a:hover {
-  color: var(--bright-white);
+    color: var(--heading-color);
 }
 
-/* Content alignment */
+/* Main content styles */
 .content {
-  margin-left: var(--sidebar-width);
-  padding: 60px 120px; /* Increased right padding */
-  width: calc(100% - var(--sidebar-width));
-  overflow-y: auto;
-  height: 100vh;
+    margin-left: var(--sidebar-width);
+    padding: 60px 100px;
+    width: calc(100% - var(--sidebar-width));
+    /* Added overflow-y for scrolling */
+    overflow-y: auto;
+    height: 100vh;
 }
 
-/* Improve section spacing */
+/* Remove the display: none from sections */
 .section {
-  max-width: 800px; /* Wider content area */
-  padding: var(--section-padding);
-  min-height: 100vh;
+    max-width: 700px;
+    /* Add padding to create space between sections */
+    padding: var(--section-padding);
+    min-height: 100vh;
 }
 
-/* Ensure proper spacing in about content */
+/* First section should have less top padding */
+.section:first-child {
+    padding-top: 0;
+}
+
+/* About Section */
+.about-content {
+    max-width: 600px;
+}
+
 .about-content p {
-  margin-bottom: 35px; /* More space between paragraphs */
-  font-size: 1.15rem;
-  line-height: 1.8;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+.highlight-link {
+    color: var(--highlight-color);
+    position: relative;
+}
+
+.highlight-link:hover {
+    text-decoration: underline;
+}
+
+.highlight-text {
+    color: var(--highlight-color);
+}
+
+/* Experience Section */
+.timeline {
+    display: flex;
+    flex-direction: column;
+}
+
+.job {
+    margin-bottom: 70px;
+    display: flex;
+    gap: 40px;
+}
+
+.job-period {
+    min-width: 140px;
+    font-size: 0.85rem;
+    color: var(--text-color);
+}
+
+.job-details {
+    flex: 1;
+}
+
+.job-title {
+    font-size: 1.25rem;
+    color: var(--heading-color);
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.company-link {
+    color: var(--highlight-color);
+    font-weight: normal;
+}
+
+.company-link:hover {
+    text-decoration: underline;
+}
+
+.job-description {
+    margin-bottom: 20px;
+}
+
+.job-description p {
+    margin-bottom: 15px;
+}
+
+.job-links {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.job-link {
+    color: var(--highlight-color);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: text-decoration 0.3s;
+}
+
+.job-link:hover {
+    text-decoration: underline;
+}
+
+.job-link::before {
+    content: '🔗';
+    font-size: 0.85rem;
+}
+
+.job-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.tech-tag {
+    background-color: var(--tag-bg-color);
+    color: var(--highlight-color);
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+/* Projects Section */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.project-card {
+    background-color: var(--card-bg-color);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.project-content {
+    padding: 20px;
+}
+
+.project-title {
+    font-size: 1.25rem;
+    color: var(--heading-color);
+    margin-bottom: 10px;
+}
+
+.project-description {
+    margin-bottom: 15px;
+}
+
+.project-stars, .project-downloads {
+    color: var(--highlight-color);
+    font-size: 0.9rem;
+}
+
+.project-tech {
+    padding: 0 20px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+    :root {
+        --sidebar-width: 350px;
+    }
+    
+    .sidebar {
+        padding: 40px 30px;
+    }
+    
+    .content {
+        padding: 40px 60px;
+    }
+
+    .job {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 992px) {
+    .content {
+        padding: 40px;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .job {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .job-period {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding: 30px;
+        background-color: var(--bg-color);
+    }
+    
+    .content {
+        margin-left: 0;
+        width: 100%;
+        padding: 30px;
+        height: auto;
+        overflow-y: visible;
+    }
+
+    .section {
+        min-height: auto;
+        padding: 50px 0;
+    }
+    
+    .nav-links {
+        display: flex;
+        gap: 20px;
+        margin: 20px 0;
+    }
+    
+    .nav-links li {
+        margin-bottom: 0;
+    }
+    
+    .social-links {
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+
+    .action-buttons {
+        flex-direction: row;
+        margin-bottom: 20px;
+    }
+
+    .action-button {
+        width: 150px;
+    }
 }
