@@ -410,11 +410,13 @@ a {
     }
     
     .social-links {
-        margin-bottom: 20px;
+        margin-top: 20px;
+        padding-bottom: 30px;
     }
 
     .action-buttons {
         flex-direction: row;
+        margin-bottom: 20px;
     }
 
     .action-button {
